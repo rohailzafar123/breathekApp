@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Text } from "react-native";
 
 import Splash from "./splash";
-import Login from "../Home/index";
+import Login from "../navigation/navigation";
 
 
 // import {withNavigation} from "react-navigation"

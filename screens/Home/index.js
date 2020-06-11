@@ -8,7 +8,8 @@ import {
     Text,
     StatusBar,
     Image,
-    TouchableOpacity
+    TouchableOpacity,
+    addons
 } from 'react-native';
 import styles from "./style";
 import RadioButtonRN from 'radio-buttons-react-native';
@@ -16,10 +17,10 @@ import Icon from 'react-native-vector-icons/Feather';
 
 const data = [
     {
-        label: '5-Pins Large Round Socket'
+        label: '5-Pins Large Round Socket',
     },
     {
-        label: '6-Pins Small Round Socket'
+        label: '6-Pins Small Round Socket',
     },
     {
         label: '7-Pins Flat Socket'
@@ -34,10 +35,10 @@ const data = [
         label: '6-Pins Heavy Duty Round Socket'
     },
     {
-        label: '12-Pin Flat Socket'
+        label: '12-Pins Flat Socket'
     },
     {
-        label: '13-Pin Round Socket'
+        label: '13-Pins Round Socket'
     }
 
 ];
@@ -45,13 +46,50 @@ export default class home extends Component {
     constructor(props) {
         super(props)
         this.state = {
-        value: null,
+        value: '',
+
         }
     }
 
+
+    _SelectedField = () => {
+        if(this.state.value == ''){
+            alert('Select Any One')
+        }
+        else if(this.state.value.label == '5-Pins Large Round Socket' ){
+            this.props.navigation.navigate('_5PinsLarge')
+        }
+        else if(this.state.value.label == '6-Pins Small Round Socket' ){
+            this.props.navigation.navigate('_6PinsSmall')
+        }
+        else if(this.state.value.label == '6-Pins Heavy Duty Round Socket' ){
+            this.props.navigation.navigate('_6PinsHeavy')
+        }
+        else if(this.state.value.label == '7-Pins Flat Socket' ){
+            this.props.navigation.navigate('_7PinsFlat')
+        }
+        else if(this.state.value.label == '7-Pins Small Round Socket' ){
+            this.props.navigation.navigate('_7PinsSmall')
+        }
+        else if(this.state.value.label == '7-Pins Large Round Socket' ){
+            this.props.navigation.navigate('_7PinsLarge')
+        }
+        else if(this.state.value.label == '12-Pins Flat Socket' ){
+            this.props.navigation.navigate('_12PinsFlat')
+        }
+        else if(this.state.value.label == '13-Pins Round Socket' ){
+            this.props.navigation.navigate('_13PinsRound')
+        }
+        else{
+            alert('not select')
+        }
+    
+    };
     render() {
+        console.log(this.state.value)
         return (
             <View style={styles.container}>
+                <StatusBar backgroundColor="black" barStyle="default" hidden={true} showHideTransition={'fade'}></StatusBar>
                 <View style={styles.header}>
                     <Image resizeMode="contain" style={styles.logo} source={require("../../images/ic_plug.png")}></Image>
                     <Text style={styles.textStyle1} >Choose And Select Trailor Socket</Text>
@@ -71,11 +109,14 @@ export default class home extends Component {
                         }}
                         circleSize={10}
                         data={data}
-                        selectedBtn={(e) => console.log(e)}
+                        selectedBtn={(e) => this.setState({value:e})}
                     />
                 </View>
                 <View style={styles.footer} >
-                    <TouchableOpacity style={styles.buttun} >
+                    <TouchableOpacity 
+                    style={styles.buttun}
+                    onPress={() => this._SelectedField()}
+                    >
                         <View>
 
                             <Text style={styles.buttnText} >SELECT</Text>
