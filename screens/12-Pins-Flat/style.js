@@ -1,45 +1,38 @@
-import {StyleSheet} from 'react-native';
+import {StyleSheet,Dimensions} from 'react-native';
 
 //Packages
 
 //Files
+const { width, height } = Dimensions.get('window');
 export default styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
   },
-  header: {
-    // flex:1,
-
+  headerContainer:{
     height: '28%',
     backgroundColor: '#dbdbdb',
     elevation: 11,
-    paddingLeft: 10,
-    flexDirection: 'row',
-    alignItems: 'center',
   },
-  goBack: {
-    alignSelf: 'center',
-    marginRight: 20,
+  header: {
+    // flex:1,
+    width:'100%',
+    height:'100%',
+    // alignSelf:'center'
+  },
+  headerInner:{
+    flex: 1, flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: 10,
   },
   logo: {
-    alignSelf: 'center',
     width: '9%',
-    marginRight: 5,
-    marginTop: 1,
   },
   textStyle1: {
     color: 'black',
-    fontSize: 14.1,
+    fontSize: width * .035,
     fontWeight: 'bold',
-    marginRight: '12%',
-
-  },
-  scanButtun: {
-    height: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: '154%',
   },
   body: {
     flex: 8,

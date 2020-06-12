@@ -32,7 +32,7 @@ const data = [
         label: '7-Pins Large Round Socket'
     },
     {
-        label: '6-Pins Heavy Duty Round Socket'
+        label: '7-Pins Heavy Duty Round Socket'
     },
     {
         label: '12-Pins Flat Socket'
@@ -62,8 +62,8 @@ export default class home extends Component {
         else if(this.state.value.label == '6-Pins Small Round Socket' ){
             this.props.navigation.navigate('_6PinsSmall')
         }
-        else if(this.state.value.label == '6-Pins Heavy Duty Round Socket' ){
-            this.props.navigation.navigate('_6PinsHeavy')
+        else if(this.state.value.label == '7-Pins Heavy Duty Round Socket' ){
+            this.props.navigation.navigate('_7PinsHeavy')
         }
         else if(this.state.value.label == '7-Pins Flat Socket' ){
             this.props.navigation.navigate('_7PinsFlat')

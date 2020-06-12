@@ -46,10 +46,10 @@ export default styles = StyleSheet.create({
       },
 
       imageBox:{
-        height:height * .26,
-        width:width *.45,
+        height:height * .28,
+        width:width *.44,
         backgroundColor:'#3b3447',
-        margin:10
+        margin:5
       },
       imageText:{
         color:'white',
@@ -63,6 +63,14 @@ export default styles = StyleSheet.create({
       },
       image2:{
         alignSelf: 'center',
-        width: '50%',
+        width: '70%',
+        bottom:7,
+
+      },
+      image3:{
+        width:'80%',
+        bottom:168,
+        alignSelf: 'center',
+
       },
 });

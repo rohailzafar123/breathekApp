@@ -57,7 +57,9 @@ export default class Splash extends Component {
         <ScrollView style={styles.lowerBody}>
           <View style={{
             flexDirection: 'row',
-            flexWrap: 'wrap'
+            flexWrap: 'wrap',
+            justifyContent:'center'
+
           }}>
             <View style={styles.imageBox}>
               <Text style={styles.imageText}>5-Pins Round</Text>
@@ -68,7 +70,7 @@ export default class Splash extends Component {
               />
             </View>
             <View style={styles.imageBox}>
-            <Text style={styles.imageText}>5-Pins Round</Text>
+            <Text style={styles.imageText}>Socket</Text>
               <Image
                 resizeMode="contain"
                 style={styles.image2}
@@ -76,34 +78,34 @@ export default class Splash extends Component {
               />
             </View>
             <View style={styles.imageBox}>
-            <Text style={styles.imageText}>5-Pins Round</Text>
+            <Text style={styles.imageText}>Left Indicator</Text>
               <Image
                 resizeMode="contain"
-                style={styles.image2}
+                style={styles.image3}
                 source={require('../../../images/5pin/left_b_0.png')}
               />
             </View>
             <View style={styles.imageBox}>
-            <Text style={styles.imageText}>5-Pins Round</Text>
+            <Text style={styles.imageText}>Right Indicator</Text>
               <Image
                 resizeMode="contain"
-                style={styles.image2}
+                style={styles.image3}
                 source={require('../../../images/5pin/right_w_0.png')}
               />
             </View>
             <View style={styles.imageBox}>
-            <Text style={styles.imageText}>5-Pins Round</Text>
+            <Text style={styles.imageText}>Tail light</Text>
               <Image
                 resizeMode="contain"
-                style={styles.image2}
+                style={styles.image3}
                 source={require('../../../images/5pin/rare_both_w_0.png')}
               />
             </View>
             <View style={styles.imageBox}>
-            <Text style={styles.imageText}>5-Pins Round</Text>
+            <Text style={styles.imageText}>Stop light</Text>
               <Image
                 resizeMode="contain"
-                style={styles.image2}
+                style={styles.image3}
                 source={require('../../../images/5pin/newstop.png')}
               />
             </View>
