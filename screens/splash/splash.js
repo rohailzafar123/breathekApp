@@ -26,7 +26,7 @@ export default class Splash extends Component {
           <View style={styles.logoContainer}>
 
             <Image resizeMode="contain" style={styles.logo} source={require("../../images/log.png")}></Image>
-            <Text style={styles.textStyle1} >LOLEC INTERPRISES</Text>
+            <Text style={styles.textStyle1} >LOLEC ENTERPRISES</Text>
 
             <ActivityIndicator size="large" color="white" style={styles.activityIndi} />
           </View>

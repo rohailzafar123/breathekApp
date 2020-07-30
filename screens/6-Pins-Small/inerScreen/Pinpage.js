@@ -73,6 +73,14 @@ export default class Splash extends Component {
     console.log('Unmount');
   }
   render() {
+    let leftIndicator;
+    !this.state.leftIndi? (leftIndicator=require('../../../images/5pin/left_b_0.png')):(leftIndicator=require('../../../images/5pin/left_b_0Active.png'));
+    let rightIndicator;
+    !this.state.rightIndi? (rightIndicator=require('../../../images/5pin/right_w_0.png')):(rightIndicator=require('../../../images/5pin/right_w_0active.png'));
+    let tailLight;
+    !this.state.tailLig? (tailLight=require('../../../images/5pin/rare_both_w_0.png')):(tailLight=require('../../../images/5pin/rare_both_w_0active.png'));
+    let stopLight;
+    !this.state.stopLig? (stopLight=require('../../../images/5pin/newstop.png')):(stopLight=require('../../../images/5pin/newstopActive.png'));
     let image_source;
     if (this.state.rssi_strength <= -40 && this.state.rssi_strength >= -65) {
       image_source = require('../../../images/5pin/action_rssi1.png');
@@ -124,6 +132,11 @@ export default class Splash extends Component {
             style={styles.wifi}
             source={image_source}
           />
+          <Image
+            resizeMode="contain"
+            style={styles.wifiAbsulute}
+            source={require('../../../images/5pin/action-rssi_weaknul.png')}
+          />
         </View>
         <ScrollView style={styles.lowerBody}>
           <View
@@ -133,7 +146,7 @@ export default class Splash extends Component {
               justifyContent: 'center',
             }}>
             <View style={styles.imageBox}>
-              <Text style={styles.imageText}>5-Pins Round</Text>
+              <Text style={styles.imageText}>6-Pins Round</Text>
               <Image
                 resizeMode="contain"
                 style={styles.image1}
@@ -153,7 +166,7 @@ export default class Splash extends Component {
               <Image
                 resizeMode="contain"
                 style={styles.image3}
-                source={require('../../../images/6pinSmall/left_b_0.png')}
+                source={leftIndicator}
               />
             </View>
             <View style={styles.imageBox}>
@@ -161,7 +174,7 @@ export default class Splash extends Component {
               <Image
                 resizeMode="contain"
                 style={styles.image3}
-                source={require('../../../images/6pinSmall/right_w_0.png')}
+                source={rightIndicator}
               />
             </View>
             <View style={styles.imageBox}>
@@ -169,7 +182,7 @@ export default class Splash extends Component {
               <Image
                 resizeMode="contain"
                 style={styles.image3}
-                source={require('../../../images/6pinSmall/rare_both_w_0.png')}
+                source={tailLight}
               />
             </View>
             <View style={styles.imageBox}>
@@ -177,7 +190,7 @@ export default class Splash extends Component {
               <Image
                 resizeMode="contain"
                 style={styles.image3}
-                source={require('../../../images/6pinSmall/newstop.png')}
+                source={stopLight}
               />
             </View>
           </View>

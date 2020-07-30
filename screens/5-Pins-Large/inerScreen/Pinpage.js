@@ -15,6 +15,10 @@ export default class Splash extends Component {
     super();
     this.state = {
       rssi_strength: 0,
+      leftIndi:false,
+      rightIndi:false,
+      tailLig:false,
+      stopLig:false,
     };
   }
 
@@ -32,7 +36,7 @@ export default class Splash extends Component {
     });
 
     //Connection
-    BleManager.connect('98:F4:AB:06:3B:8E')
+    BleManager.connect('4C:11:AE:D9:28:52')
       .then(() => {
         // Success code
         console.log('Connected');
@@ -40,7 +44,7 @@ export default class Splash extends Component {
       .then(() => {
         //read rssi
         this.timeout = setInterval(() => {
-          BleManager.readRSSI('98:F4:AB:06:3B:8E')
+          BleManager.readRSSI('4C:11:AE:D9:28:52')
             .then((rssi) => {
               // Success code
               console.log('Current RSSI: ' + rssi);
@@ -52,7 +56,7 @@ export default class Splash extends Component {
               // Failure code
               console.log(error);
             });
-        }, 1000);
+        }, 500);
       })
       .catch((error) => {
         // Failure code
@@ -64,6 +68,14 @@ export default class Splash extends Component {
     console.log('Unmount');
   }
   render() {
+    let leftIndicator;
+    !this.state.leftIndi? (leftIndicator=require('../../../images/5pin/left_b_0.png')):(leftIndicator=require('../../../images/5pin/left_b_0Active.png'));
+    let rightIndicator;
+    !this.state.rightIndi? (rightIndicator=require('../../../images/5pin/right_w_0.png')):(rightIndicator=require('../../../images/5pin/right_w_0active.png'));
+    let tailLight;
+    !this.state.tailLig? (tailLight=require('../../../images/5pin/rare_both_w_0.png')):(tailLight=require('../../../images/5pin/rare_both_w_0active.png'));
+    let stopLight;
+    !this.state.stopLig? (stopLight=require('../../../images/5pin/newstop.png')):(stopLight=require('../../../images/5pin/newstopActive.png'));
     let image_source;
     if (this.state.rssi_strength <= -40 && this.state.rssi_strength >= -65) {
       image_source = require('../../../images/5pin/action_rssi1.png');
@@ -115,6 +127,11 @@ export default class Splash extends Component {
             style={styles.wifi}
             source={image_source}
           />
+          <Image
+            resizeMode="contain"
+            style={styles.wifiAbsulute}
+            source={require('../../../images/5pin/action-rssi_weaknul.png')}
+          />
         </View>
         <ScrollView style={styles.lowerBody}>
           <View
@@ -144,7 +161,7 @@ export default class Splash extends Component {
               <Image
                 resizeMode="contain"
                 style={styles.image3}
-                source={require('../../../images/5pin/left_b_0.png')}
+                source={leftIndicator}
               />
             </View>
             <View style={styles.imageBox}>
@@ -152,7 +169,7 @@ export default class Splash extends Component {
               <Image
                 resizeMode="contain"
                 style={styles.image3}
-                source={require('../../../images/5pin/right_w_0.png')}
+                source={rightIndicator}
               />
             </View>
             <View style={styles.imageBox}>
@@ -160,7 +177,7 @@ export default class Splash extends Component {
               <Image
                 resizeMode="contain"
                 style={styles.image3}
-                source={require('../../../images/5pin/rare_both_w_0.png')}
+                source={tailLight}
               />
             </View>
             <View style={styles.imageBox}>
@@ -168,7 +185,7 @@ export default class Splash extends Component {
               <Image
                 resizeMode="contain"
                 style={styles.image3}
-                source={require('../../../images/5pin/newstop.png')}
+                source={stopLight}
               />
             </View>
           </View>
