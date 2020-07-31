@@ -24,6 +24,12 @@ export default class Splash extends Component {
     super();
     this.state = {
       rssi_strength: 0,
+      leftIndi:false,
+      rightIndi:false,
+      tailLig:false,
+      stopLig:false,
+      newRev:false,
+      revLight:false
     };
   }
 
@@ -73,6 +79,18 @@ export default class Splash extends Component {
     console.log('Unmount');
   }
   render() {
+    let leftIndicator;
+    !this.state.leftIndi? (leftIndicator=require('../../../images/7pinHeavy/left_b_0.png')):(leftIndicator=require('../../../images/7pinHeavy/left_b_0Active.png'));
+    let rightIndicator;
+    !this.state.rightIndi? (rightIndicator=require('../../../images/7pinHeavy/right_w_0.png')):(rightIndicator=require('../../../images/7pinHeavy/right_w_0active.png'));
+    let tailLight;
+    !this.state.tailLig? (tailLight=require('../../../images/7pinHeavy/rare_r_w_0.png')):(tailLight=require('../../../images/7pinHeavy/rare_r_w_0Active.png'));
+    let stopLight;
+    !this.state.stopLig? (stopLight=require('../../../images/7pinHeavy/newstop.png')):(stopLight=require('../../../images/7pinHeavy/newstopActive.png'));
+    let newReverse;
+    !this.state.newRev? (newReverse=require('../../../images/7pinHeavy/rare_l_w_0.png')):(newReverse=require('../../../images/7pinHeavy/rare_l_w_0Active.png'));
+    let revereLight;
+    !this.state.revLight? (revereLight=require('../../../images/7pinHeavy/Reverse_Light.png')):(revereLight=require('../../../images/7pinHeavy/Reverse_LightActive.png'));
     let image_source;
     if (this.state.rssi_strength <= -40 && this.state.rssi_strength >= -65) {
       image_source = require('../../../images/5pin/action_rssi1.png');
@@ -124,6 +142,11 @@ export default class Splash extends Component {
             style={styles.wifi}
             source={image_source}
           />
+          <Image
+            resizeMode="contain"
+            style={styles.wifiAbsulute}
+            source={require('../../../images/5pin/action-rssi_weaknul.png')}
+          />
         </View>
         <ScrollView style={styles.lowerBody}>
           <View
@@ -153,7 +176,7 @@ export default class Splash extends Component {
               <Image
                 resizeMode="contain"
                 style={styles.image3}
-                source={require('../../../images/7pinHeavy/leftyellow_b_0.png')}
+                source={leftIndicator}
               />
             </View>
             <View style={styles.imageBox}>
@@ -161,15 +184,7 @@ export default class Splash extends Component {
               <Image
                 resizeMode="contain"
                 style={styles.image3}
-                source={require('../../../images/7pinHeavy/right_w_0.png')}
-              />
-            </View>
-            <View style={styles.imageBox}>
-              <Text style={styles.imageText}>Tail Lights</Text>
-              <Image
-                resizeMode="contain"
-                style={styles.image3}
-                source={require('../../../images/7pinHeavy/rare_l_w_0.png')}
+                source={rightIndicator}
               />
             </View>
             <View style={styles.imageBox}>
@@ -177,7 +192,15 @@ export default class Splash extends Component {
               <Image
                 resizeMode="contain"
                 style={styles.image3}
-                source={require('../../../images/7pinHeavy/rare_r_w_0.png')}
+                source={newReverse}
+              />
+            </View>
+            <View style={styles.imageBox}>
+              <Text style={styles.imageText}>Tail Lights</Text>
+              <Image
+                resizeMode="contain"
+                style={styles.image3}
+                source={tailLight}
               />
             </View>
             <View style={styles.imageBox}>
@@ -185,7 +208,15 @@ export default class Splash extends Component {
               <Image
                 resizeMode="contain"
                 style={styles.image3}
-                source={require('../../../images/7pinHeavy/newstop.png')}
+                source={revereLight}
+              />
+            </View>
+            <View style={styles.imageBox}>
+              <Text style={styles.imageText}>Stop Lights</Text>
+              <Image
+                resizeMode="contain"
+                style={styles.image3}
+                source={stopLight}
               />
             </View>
           </View>

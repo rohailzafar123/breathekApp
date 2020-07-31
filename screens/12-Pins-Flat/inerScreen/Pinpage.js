@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 
 import {
   AppRegistry,
@@ -15,8 +15,8 @@ import BleManager from 'react-native-ble-manager';
 //Packagess
 
 import styles from './style';
-import {TouchableOpacity, ScrollView} from 'react-native-gesture-handler';
-import {SceneView} from 'react-navigation';
+import { TouchableOpacity, ScrollView } from 'react-native-gesture-handler';
+import { SceneView } from 'react-navigation';
 
 export default class Splash extends Component {
   timeout = 0;
@@ -24,6 +24,15 @@ export default class Splash extends Component {
     super();
     this.state = {
       rssi_strength: 0,
+      leftIndi: false,
+      rightIndi: false,
+      tailLig: false,
+      stopLig: false,
+      newRev: false,
+      newFog: false,
+      ignition: false,
+      pinkIgnition: false,
+      newBat: false
     };
   }
 
@@ -73,6 +82,25 @@ export default class Splash extends Component {
     console.log('Unmount');
   }
   render() {
+    let leftIndicator;
+    !this.state.leftIndi ? (leftIndicator = require('../../../images/12pin/left_b_0.png')) : (leftIndicator = require('../../../images/12pin/left_b_0Active.png'));
+    let rightIndicator;
+    !this.state.rightIndi ? (rightIndicator = require('../../../images/12pin/right_w_0.png')) : (rightIndicator = require('../../../images/12pin/right_w_0active.png'));
+    let tailLight;
+    !this.state.tailLig ? (tailLight = require('../../../images/12pin/rare_both_w_0.png')) : (tailLight = require('../../../images/12pin/rare_both_w_0active.png'));
+    let stopLight;
+    !this.state.stopLig ? (stopLight = require('../../../images/12pin/newstop.png')) : (stopLight = require('../../../images/12pin/newstopActive.png'));
+    let newReverse;
+    !this.state.newRev ? (newReverse = require('../../../images/12pin/newreverse.png')) : (newReverse = require('../../../images/12pin/newreverseActive.png'));
+    let newBattery;
+    !this.state.newBat ? (newBattery = require('../../../images/12pin/newbatt.png')) : (newBattery = require('../../../images/12pin/newbattActive.png'));
+    let newFogLight;
+    !this.state.newFog ? (newFogLight = require('../../../images/12pin/newfog.png')) : (newFogLight = require('../../../images/12pin/newfogActive.png'));
+    let newIgnition;
+    !this.state.ignition ? (newIgnition = require('../../../images/12pin/newignipurple.png')) : (newIgnition = require('../../../images/12pin/newignipurpleActive.png'));
+    let newPinkIgnition;
+    !this.state.pinkIgnition ? (newPinkIgnition = require('../../../images/12pin/pinkignition.png')) : (newPinkIgnition = require('../../../images/12pin/pinkignitionActive.png'));
+
     let image_source;
     if (this.state.rssi_strength <= -40 && this.state.rssi_strength >= -65) {
       image_source = require('../../../images/5pin/action_rssi1.png');
@@ -109,7 +137,7 @@ export default class Splash extends Component {
             style={styles.loadingLine}
             source={require('../../../images/12pin/barone.png')}
           />
-          <Text style={{fontSize: 20, color: 'white'}}>N/A</Text>
+          <Text style={{ fontSize: 20, color: 'white' }}>N/A</Text>
           <Text
             style={{
               fontSize: 12,
@@ -123,6 +151,11 @@ export default class Splash extends Component {
             resizeMode="contain"
             style={styles.wifi}
             source={image_source}
+          />
+           <Image
+            resizeMode="contain"
+            style={styles.wifiAbsulute}
+            source={require('../../../images/5pin/action-rssi_weaknul.png')}
           />
         </View>
         <ScrollView style={styles.lowerBody}>
@@ -153,7 +186,7 @@ export default class Splash extends Component {
               <Image
                 resizeMode="contain"
                 style={styles.image3}
-                source={require('../../../images/12pin/leftyellow_b_0.png')}
+                source={leftIndicator}
               />
             </View>
             <View style={styles.imageBox}>
@@ -161,7 +194,7 @@ export default class Splash extends Component {
               <Image
                 resizeMode="contain"
                 style={styles.image3}
-                source={require('../../../images/12pin/right_w_0.png')}
+                source={rightIndicator}
               />
             </View>
             <View style={styles.imageBox}>
@@ -169,7 +202,7 @@ export default class Splash extends Component {
               <Image
                 resizeMode="contain"
                 style={styles.image3}
-                source={require('../../../images/12pin/rare_both_w_0.png')}
+                source={tailLight}
               />
             </View>
             <View style={styles.imageBox}>
@@ -177,7 +210,7 @@ export default class Splash extends Component {
               <Image
                 resizeMode="contain"
                 style={styles.image3}
-                source={require('../../../images/12pin/newfog.png')}
+                source={newFogLight}
               />
             </View>
             <View style={styles.imageBox}>
@@ -185,7 +218,7 @@ export default class Splash extends Component {
               <Image
                 resizeMode="contain"
                 style={styles.image3}
-                source={require('../../../images/12pin/newstop.png')}
+                source={stopLight}
               />
             </View>
             <View style={styles.imageBox}>
@@ -193,7 +226,7 @@ export default class Splash extends Component {
               <Image
                 resizeMode="contain"
                 style={styles.image3}
-                source={require('../../../images/12pin/newreverse.png')}
+                source={newReverse}
               />
             </View>
             <View style={styles.imageBox}>
@@ -201,7 +234,7 @@ export default class Splash extends Component {
               <Image
                 resizeMode="contain"
                 style={styles.image3}
-                source={require('../../../images/12pin/newbatt.png')}
+                source={newBattery}
               />
             </View>
             <View style={styles.imageBox}>
@@ -209,7 +242,7 @@ export default class Splash extends Component {
               <Image
                 resizeMode="contain"
                 style={styles.image3}
-                source={require('../../../images/12pin/newignipurple.png')}
+                source={newIgnition}
               />
             </View>
             <View style={styles.imageBox}>
@@ -217,7 +250,7 @@ export default class Splash extends Component {
               <Image
                 resizeMode="contain"
                 style={styles.image3}
-                source={require('../../../images/12pin/pinkignition.png')}
+                source={newPinkIgnition}
               />
             </View>
           </View>

@@ -23,6 +23,15 @@ export default class Splash extends Component {
     super();
     this.state = {
       rssi_strength: 0,
+      leftIndi: false,
+      rightIndi: false,
+      fogBlue: false,
+      stopLig: false,
+      pinkReverse: false,
+      rareLeft: false,
+      ignition: false,
+      rareRight: false,
+      newBat: false
     };
   }
 
@@ -72,6 +81,25 @@ export default class Splash extends Component {
     console.log('Unmount');
   }
   render() {
+    let leftIndicator;
+    !this.state.leftIndi ? (leftIndicator = require('../../../images/13pin/left_b_0.png')) : (leftIndicator = require('../../../images/13pin/left_b_0Active.png'));
+    let rightIndicator;
+    !this.state.rightIndi ? (rightIndicator = require('../../../images/13pin/right_w_0.png')) : (rightIndicator = require('../../../images/13pin/right_w_0active.png'));
+    let fogBlueLight;
+    !this.state.fogBlue ? (fogBlueLight = require('../../../images/13pin/fogblue.png')) : (fogBlueLight = require('../../../images/13pin/fogblueActive.png'));
+    let stopLight;
+    !this.state.stopLig ? (stopLight = require('../../../images/13pin/newstop.png')) : (stopLight = require('../../../images/13pin/newstopActive.png'));
+    let pinkReverseBack;
+    !this.state.pinkReverse ? (pinkReverseBack = require('../../../images/13pin/pinkreverse.png')) : (pinkReverseBack = require('../../../images/13pin/pinkreverseActive.png'));
+    let newBattery;
+    !this.state.newBat ? (newBattery = require('../../../images/13pin/newbatt.png')) : (newBattery = require('../../../images/13pin/newbattActive.png'));
+    let rareLeftLight;
+    !this.state.rareLeft ? (rareLeftLight = require('../../../images/13pin/rare_l_w_0.png')) : (rareLeftLight = require('../../../images/13pin/rare_l_w_0Active.png'));
+    let newIgnition;
+    !this.state.ignition ? (newIgnition = require('../../../images/13pin/newigni.png')) : (newIgnition = require('../../../images/13pin/newigniActive.png'));
+    let rareRightLight;
+    !this.state.rareRight ? (rareRightLight = require('../../../images/13pin/rare_r_w_0.png')) : (rareRightLight = require('../../../images/13pin/rare_r_w_0Active.png'));
+
     let image_source;
     if (this.state.rssi_strength <= -40 && this.state.rssi_strength >= -65) {
       image_source = require('../../../images/5pin/action_rssi1.png');
@@ -123,6 +151,11 @@ export default class Splash extends Component {
             style={styles.wifi}
             source={image_source}
           />
+          <Image
+            resizeMode="contain"
+            style={styles.wifiAbsulute}
+            source={require('../../../images/5pin/action-rssi_weaknul.png')}
+          />
         </View>
         <ScrollView style={styles.lowerBody}>
           <View
@@ -152,7 +185,7 @@ export default class Splash extends Component {
               <Image
                 resizeMode="contain"
                 style={styles.image3}
-                source={require('../../../images/13pin/leftyellow_b_0.png')}
+                source={leftIndicator}
               />
             </View>
             <View style={styles.imageBox}>
@@ -160,15 +193,7 @@ export default class Splash extends Component {
               <Image
                 resizeMode="contain"
                 style={styles.image3}
-                source={require('../../../images/13pin/right_w_0.png')}
-              />
-            </View>
-            <View style={styles.imageBox}>
-              <Text style={styles.imageText}>Tail Lights(R)</Text>
-              <Image
-                resizeMode="contain"
-                style={styles.image3}
-                source={require('../../../images/13pin/rare_l_w_0.png')}
+                source={rightIndicator}
               />
             </View>
             <View style={styles.imageBox}>
@@ -176,7 +201,15 @@ export default class Splash extends Component {
               <Image
                 resizeMode="contain"
                 style={styles.image3}
-                source={require('../../../images/13pin/rare_r_w_0.png')}
+                source={rareLeftLight}
+              />
+            </View>
+            <View style={styles.imageBox}>
+              <Text style={styles.imageText}>Tail Lights(R)</Text>
+              <Image
+                resizeMode="contain"
+                style={styles.image3}
+                source={rareRightLight}
               />
             </View>
             <View style={styles.imageBox}>
@@ -184,7 +217,7 @@ export default class Splash extends Component {
               <Image
                 resizeMode="contain"
                 style={styles.image3}
-                source={require('../../../images/13pin/fogblue.png')}
+                source={fogBlueLight}
               />
             </View>
             <View style={styles.imageBox}>
@@ -192,7 +225,7 @@ export default class Splash extends Component {
               <Image
                 resizeMode="contain"
                 style={styles.image3}
-                source={require('../../../images/13pin/newstop.png')}
+                source={stopLight}
               />
             </View>
             <View style={styles.imageBox}>
@@ -200,7 +233,7 @@ export default class Splash extends Component {
               <Image
                 resizeMode="contain"
                 style={styles.image4}
-                source={require('../../../images/13pin/pinkreverse.png')}
+                source={pinkReverseBack}
               />
             </View>
             <View style={styles.imageBox}>
@@ -208,7 +241,7 @@ export default class Splash extends Component {
               <Image
                 resizeMode="contain"
                 style={styles.image3}
-                source={require('../../../images/13pin/newbatt.png')}
+                source={newBattery}
               />
             </View>
             <View style={styles.imageBox}>
@@ -216,7 +249,7 @@ export default class Splash extends Component {
               <Image
                 resizeMode="contain"
                 style={styles.image3}
-                source={require('../../../images/13pin/newigni.png')}
+                source={newIgnition}
               />
             </View>
           </View>

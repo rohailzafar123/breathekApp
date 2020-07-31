@@ -24,6 +24,11 @@ export default class Splash extends Component {
     super();
     this.state = {
       rssi_strength: 0,
+      leftIndi:false,
+      rightIndi:false,
+      tailLig:false,
+      stopLig:false,
+      newRev:false
     };
   }
 
@@ -73,6 +78,16 @@ export default class Splash extends Component {
     console.log('Unmount');
   }
   render() {
+    let leftIndicator;
+    !this.state.leftIndi? (leftIndicator=require('../../../images/7pinFlat/left_b_0.png')):(leftIndicator=require('../../../images/7pinFlat/left_b_0Active.png'));
+    let rightIndicator;
+    !this.state.rightIndi? (rightIndicator=require('../../../images/7pinFlat/right_w_0.png')):(rightIndicator=require('../../../images/7pinFlat/right_w_0active.png'));
+    let tailLight;
+    !this.state.tailLig? (tailLight=require('../../../images/7pinFlat/rare_both_w_0.png')):(tailLight=require('../../../images/7pinFlat/rare_both_w_0active.png'));
+    let stopLight;
+    !this.state.stopLig? (stopLight=require('../../../images/7pinFlat/newstop.png')):(stopLight=require('../../../images/7pinFlat/newstopActive.png'));
+    let newReverse;
+    !this.state.newRev? (newReverse=require('../../../images/7pinFlat/newreverse.png')):(newReverse=require('../../../images/7pinFlat/newreverseActive.png'));
     let image_source;
     if (this.state.rssi_strength <= -40 && this.state.rssi_strength >= -65) {
       image_source = require('../../../images/5pin/action_rssi1.png');
@@ -158,7 +173,7 @@ export default class Splash extends Component {
               <Image
                 resizeMode="contain"
                 style={styles.image3}
-                source={require('../../../images/7pinFlat/leftyellow_b_0.png')}
+                source={leftIndicator}
               />
             </View>
             <View style={styles.imageBox}>
@@ -166,7 +181,7 @@ export default class Splash extends Component {
               <Image
                 resizeMode="contain"
                 style={styles.image3}
-                source={require('../../../images/7pinFlat/right_w_0.png')}
+                source={rightIndicator}
               />
             </View>
             <View style={styles.imageBox}>
@@ -174,7 +189,7 @@ export default class Splash extends Component {
               <Image
                 resizeMode="contain"
                 style={styles.image3}
-                source={require('../../../images/7pinFlat/rare_both_w_0.png')}
+                source={tailLight}
               />
             </View>
             <View style={styles.imageBox}>
@@ -182,7 +197,7 @@ export default class Splash extends Component {
               <Image
                 resizeMode="contain"
                 style={styles.image3}
-                source={require('../../../images/7pinFlat/newreverse.png')}
+                source={newReverse}
               />
             </View>
             <View style={styles.imageBox}>
@@ -190,7 +205,7 @@ export default class Splash extends Component {
               <Image
                 resizeMode="contain"
                 style={styles.image3}
-                source={require('../../../images/7pinFlat/newstop.png')}
+                source={stopLight}
               />
             </View>
           </View>
