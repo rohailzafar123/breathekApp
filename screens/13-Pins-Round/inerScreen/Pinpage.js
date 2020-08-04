@@ -36,11 +36,13 @@ export default class Splash extends Component {
     //Scanning
     BleManager.scan(['4fafc201-1fb5-459e-8fcc-c5c9c331914b'], 5).then(() => {
       // Success code
-      console.log('Scan started for 4fafc201-1fb5-459e-8fcc-c5c9c331914b');
+      BleManager.getBondedPeripherals().then((res) => {
+        console.log(res);
+      });
     });
 
     //Connection
-    BleManager.connect('98:F4:AB:06:3B:8E')
+    BleManager.connect('4C:11:AE:EB:74:26')
       .then(() => {
         // Success code
         console.log('Connected');
@@ -48,7 +50,7 @@ export default class Splash extends Component {
       .then(() => {
         //read rssi
         this.timeout = setInterval(() => {
-          BleManager.readRSSI('98:F4:AB:06:3B:8E')
+          BleManager.readRSSI('4C:11:AE:EB:74:26')
             .then((rssi) => {
               // Success code
               console.log('Current RSSI: ' + rssi);

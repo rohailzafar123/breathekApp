@@ -32,7 +32,7 @@ export default class Splash extends Component {
     });
 
     //Connection
-    BleManager.connect('98:F4:AB:06:3B:8E')
+    BleManager.connect('4C:11:AE:EB:74:26')
       .then(() => {
         // Success code
         console.log('Connected');
@@ -40,7 +40,7 @@ export default class Splash extends Component {
       .then(() => {
         //read rssi
         this.timeout = setInterval(() => {
-          BleManager.readRSSI('98:F4:AB:06:3B:8E')
+          BleManager.readRSSI('4C:11:AE:EB:74:26')
             .then((rssi) => {
               // Success code
               console.log('Current RSSI: ' + rssi);
