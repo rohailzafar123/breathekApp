@@ -17,6 +17,10 @@ import BleManager from 'react-native-ble-manager';
 import styles from './style';
 import {TouchableOpacity, ScrollView} from 'react-native-gesture-handler';
 import {SceneView} from 'react-navigation';
+import {NativeModules, NativeEventEmitter} from 'react-native';
+
+const BleManagerModule = NativeModules.BleManager;
+const bleManagerEmitter = new NativeEventEmitter(BleManagerModule);
 
 export default class Splash extends Component {
   timeout = 0;
@@ -24,7 +28,145 @@ export default class Splash extends Component {
     super();
     this.state = {
       rssi_strength: 0,
+      deviceId: '',
+      leftIndi: false,
+      rightIndi: false,
+      tailLig: false,
+      stopLig: false,
+      newRev: false,
+      newFog: false,
+      ignition: false,
+      pinkIgnition: false,
+      newBat: false,
     };
+  }
+
+  async connectAndPrepare(peripheral, service, characteristic) {
+    // Before startNotification you need to call retrieveServices
+    await BleManager.retrieveServices(peripheral);
+    // To enable BleManagerDidUpdateValueForCharacteristic listener
+    await BleManager.startNotification(peripheral, service, characteristic);
+    // Add event listener
+    bleManagerEmitter.addListener(
+      'BleManagerDidUpdateValueForCharacteristic',
+      ({value, peripheral, characteristic, service}) => {
+        // Convert bytes array to string
+        let hex,
+          hexadec = '';
+        for (let i = 0; i < value.length; i++) {
+          if (i !== 0) {
+            hex = value[i].toString(16);
+            hexadec += '-' + hex;
+          } else if (i === 0) {
+            hex = value[i].toString(16);
+            hexadec += hex;
+          }
+        }
+        console.log(hexadec);
+        if (hexadec == '0-0-11-ff') {
+          console.log('Random');
+        }
+        //left Turn
+        if (hexadec == '0-0-0-1') {
+          this.setState({
+            leftIndi: true,
+            rightIndi: false,
+            tailLig: false,
+            stopLig: false,
+            newRev: false,
+            newFog: false,
+            ignition: false,
+            pinkIgnition: false,
+            newBat: false,
+          });
+        }
+        //right Turn
+        if (hexadec == '0-0-0-13') {
+          this.setState({
+            leftIndi: false,
+            rightIndi: true,
+            tailLig: false,
+            stopLig: false,
+            newRev: false,
+            newFog: false,
+            ignition: false,
+            pinkIgnition: false,
+            newBat: false,
+          });
+        }
+        //stop Light
+        if (hexadec == '0-0-0-3b') {
+          this.setState({
+            leftIndi: false,
+            rightIndi: false,
+            tailLig: false,
+            stopLig: true,
+            newRev: false,
+            newFog: false,
+            ignition: false,
+            pinkIgnition: false,
+            newBat: false,
+          });
+        }
+        //igition Power
+        if (hexadec == '0-0-1-ff') {
+          this.setState({
+            leftIndi: false,
+            rightIndi: false,
+            tailLig: false,
+            stopLig: false,
+            newRev: false,
+            newFog: false,
+            ignition: true,
+            pinkIgnition: false,
+            newBat: false,
+          });
+        }
+        //battery Power
+        if (hexadec == '0-0-0-ff') {
+          this.setState({
+            leftIndi: false,
+            rightIndi: false,
+            tailLig: false,
+            stopLig: false,
+            newRev: false,
+            newFog: false,
+            ignition: false,
+            pinkIgnition: false,
+            newBat: true,
+          });
+        }
+        //Fog Light
+        if (hexadec == '0-0-0-11') {
+          this.setState({
+            leftIndi: false,
+            rightIndi: false,
+            tailLig: false,
+            stopLig: false,
+            newRev: false,
+            newFog: true,
+            ignition: false,
+            pinkIgnition: false,
+            newBat: false,
+          });
+        }
+        //Reverse Light
+        if (hexadec == '0-0-0-7f') {
+          this.setState({
+            leftIndi: false,
+            rightIndi: false,
+            tailLig: false,
+            stopLig: false,
+            newRev: true,
+            newFog: false,
+            ignition: false,
+            pinkIgnition: false,
+            newBat: false,
+          });
+        }
+      },
+    );
+    // Actions triggereng BleManagerDidUpdateValueForCharacteristic event
   }
 
   componentDidMount() {
@@ -37,42 +179,97 @@ export default class Splash extends Component {
     //Scanning
     BleManager.scan(['4fafc201-1fb5-459e-8fcc-c5c9c331914b'], 5).then(() => {
       // Success code
-      console.log('Scan started for 4fafc201-1fb5-459e-8fcc-c5c9c331914b');
-    });
-
-    //Connection
-    BleManager.connect('4C:11:AE:EB:74:26')
-      .then(() => {
-        // Success code
-        console.log('Connected');
-      })
-      .then(() => {
-        //read rssi
-        this.timeout = setInterval(() => {
-          BleManager.readRSSI('4C:11:AE:EB:74:26')
-            .then((rssi) => {
+      BleManager.getBondedPeripherals()
+        .then((res) => {
+          console.log(res[0].id);
+          this.setState({
+            deviceId: res[0].id,
+          });
+        })
+        .then(() => {
+          console.log(this.state.deviceId);
+          BleManager.connect(this.state.deviceId)
+            .then(() => {
               // Success code
-              console.log('Current RSSI: ' + rssi);
-              this.setState({
-                rssi_strength: rssi,
-              });
+              console.log('Connected');
+            })
+            .then(() => {
+              //read rssi
+              this.timeout = setInterval(() => {
+                BleManager.readRSSI(this.state.deviceId)
+                  .then((rssi) => {
+                    // Success code
+                    console.log('Current RSSI: ' + rssi);
+                    this.setState({
+                      rssi_strength: rssi,
+                    });
+                  })
+                  .catch((error) => {
+                    // Failure code
+                    console.log(error);
+                  });
+              }, 1000);
+
+              //notify
+              this.connectAndPrepare(
+                this.state.deviceId,
+                '4fafc201-1fb5-459e-8fcc-c5c9c331914b',
+                'beb5483e-36e1-4688-b7f5-ea07361b26a8',
+              );
             })
             .catch((error) => {
               // Failure code
-              console.log(error);
+              console.log('err', error);
             });
-        }, 1000);
-      })
-      .catch((error) => {
-        // Failure code
-        console.log('err', error);
-      });
+        });
+    });
   }
   componentWillUnmount() {
     clearInterval(this.timeout);
-    console.log('Unmount');
+    BleManager.stopNotification(
+      this.state.deviceId,
+      '4fafc201-1fb5-459e-8fcc-c5c9c331914b',
+      'beb5483e-36e1-4688-b7f5-ea07361b26a8',
+    );
   }
   render() {
+    let leftIndicator;
+    !this.state.leftIndi
+      ? (leftIndicator = require('../../../images/12pin/left_b_0.png'))
+      : (leftIndicator = require('../../../images/12pin/left_b_0Active.png'));
+    let rightIndicator;
+    !this.state.rightIndi
+      ? (rightIndicator = require('../../../images/12pin/right_w_0.png'))
+      : (rightIndicator = require('../../../images/12pin/right_w_0active.png'));
+    let tailLight;
+    !this.state.tailLig
+      ? (tailLight = require('../../../images/12pin/rare_both_w_0.png'))
+      : (tailLight = require('../../../images/12pin/rare_both_w_0active.png'));
+    let stopLight;
+    !this.state.stopLig
+      ? (stopLight = require('../../../images/12pin/newstop.png'))
+      : (stopLight = require('../../../images/12pin/newstopActive.png'));
+    let newReverse;
+    !this.state.newRev
+      ? (newReverse = require('../../../images/12pin/newreverse.png'))
+      : (newReverse = require('../../../images/12pin/newreverseActive.png'));
+    let newBattery;
+    !this.state.newBat
+      ? (newBattery = require('../../../images/12pin/newbatt.png'))
+      : (newBattery = require('../../../images/12pin/newbattActive.png'));
+    let newFogLight;
+    !this.state.newFog
+      ? (newFogLight = require('../../../images/12pin/newfog.png'))
+      : (newFogLight = require('../../../images/12pin/newfogActive.png'));
+    let newIgnition;
+    !this.state.ignition
+      ? (newIgnition = require('../../../images/12pin/newignipurple.png'))
+      : (newIgnition = require('../../../images/12pin/newignipurpleActive.png'));
+    let newPinkIgnition;
+    !this.state.pinkIgnition
+      ? (newPinkIgnition = require('../../../images/12pin/pinkignition.png'))
+      : (newPinkIgnition = require('../../../images/12pin/pinkignitionActive.png'));
+
     let image_source;
     if (this.state.rssi_strength <= -40 && this.state.rssi_strength >= -65) {
       image_source = require('../../../images/5pin/action_rssi1.png');
@@ -124,6 +321,11 @@ export default class Splash extends Component {
             style={styles.wifi}
             source={image_source}
           />
+          <Image
+            resizeMode="contain"
+            style={styles.wifiAbsulute}
+            source={require('../../../images/5pin/action-rssi_weaknul.png')}
+          />
         </View>
         <ScrollView style={styles.lowerBody}>
           <View
@@ -153,7 +355,7 @@ export default class Splash extends Component {
               <Image
                 resizeMode="contain"
                 style={styles.image3}
-                source={require('../../../images/12pin/leftyellow_b_0.png')}
+                source={leftIndicator}
               />
             </View>
             <View style={styles.imageBox}>
@@ -161,7 +363,7 @@ export default class Splash extends Component {
               <Image
                 resizeMode="contain"
                 style={styles.image3}
-                source={require('../../../images/12pin/right_w_0.png')}
+                source={rightIndicator}
               />
             </View>
             <View style={styles.imageBox}>
@@ -169,7 +371,7 @@ export default class Splash extends Component {
               <Image
                 resizeMode="contain"
                 style={styles.image3}
-                source={require('../../../images/12pin/rare_both_w_0.png')}
+                source={tailLight}
               />
             </View>
             <View style={styles.imageBox}>
@@ -177,7 +379,7 @@ export default class Splash extends Component {
               <Image
                 resizeMode="contain"
                 style={styles.image3}
-                source={require('../../../images/12pin/newfog.png')}
+                source={newFogLight}
               />
             </View>
             <View style={styles.imageBox}>
@@ -185,7 +387,7 @@ export default class Splash extends Component {
               <Image
                 resizeMode="contain"
                 style={styles.image3}
-                source={require('../../../images/12pin/newstop.png')}
+                source={stopLight}
               />
             </View>
             <View style={styles.imageBox}>
@@ -193,7 +395,7 @@ export default class Splash extends Component {
               <Image
                 resizeMode="contain"
                 style={styles.image3}
-                source={require('../../../images/12pin/newreverse.png')}
+                source={newReverse}
               />
             </View>
             <View style={styles.imageBox}>
@@ -201,7 +403,7 @@ export default class Splash extends Component {
               <Image
                 resizeMode="contain"
                 style={styles.image3}
-                source={require('../../../images/12pin/newbatt.png')}
+                source={newBattery}
               />
             </View>
             <View style={styles.imageBox}>
@@ -209,7 +411,7 @@ export default class Splash extends Component {
               <Image
                 resizeMode="contain"
                 style={styles.image3}
-                source={require('../../../images/12pin/newignipurple.png')}
+                source={newIgnition}
               />
             </View>
             <View style={styles.imageBox}>
@@ -217,7 +419,7 @@ export default class Splash extends Component {
               <Image
                 resizeMode="contain"
                 style={styles.image3}
-                source={require('../../../images/12pin/pinkignition.png')}
+                source={newPinkIgnition}
               />
             </View>
           </View>
