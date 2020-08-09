@@ -25,6 +25,7 @@ export default styles = StyleSheet.create({
   uperBody: {
     backgroundColor: '#350338',
     height: height * 0.16,
+    width:width * 1,
     flexDirection: 'row',
     alignItems: 'center',
     borderBottomWidth: 18,
@@ -35,14 +36,13 @@ export default styles = StyleSheet.create({
     left: 15,
   },
   wifi: {
-    marginTop: 12,
     width: '10%',
     height: '80%',
   },
   wifiAbsulute: {
     // marginTop: 11,
     top: height * 0.021,
-    right: width * 0.13,
+    left: width * 0.2,
     width: '10%',
     height: '80%',
     position: 'absolute',
@@ -65,7 +65,9 @@ export default styles = StyleSheet.create({
   },
   image1: {
     alignSelf: 'center',
-    width: '100%',
+    width: width * .4,
+    height: height * .11,
+    top:height * .1
   },
   image2: {
     alignSelf: 'center',
@@ -78,3 +80,5 @@ export default styles = StyleSheet.create({
     alignSelf: 'center',
   },
 });
+
+

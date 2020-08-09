@@ -84,128 +84,67 @@ export default class Splash extends Component {
             });
           }
           //left Turn
-          if (hexadec == '0-0-0-1') {
+          if( hexadec |  '0-0-0-1' || hexadec == '0-0-0-1' )  {
             this.setState({
               leftIndi: true,
-              rightIndi: false,
-              stopLig: false,
-              ignition: false,
-              newBat: false,
-              fogBlue: false,
-              pinkReverse: false,
-              rareLeft: false,
-              rareRight: false,
             });
           }
-          //right Turn
-          if (hexadec == '0-0-0-2') {
+          else{
             this.setState({
               leftIndi: false,
+            });
+          }
+         
+          //right Turn
+          if ( hexadec | '0-0-0-2' || hexadec == '0-0-0-2') {
+            this.setState({
               rightIndi: true,
-              stopLig: false,
-              ignition: false,
-              newBat: false,
-              fogBlue: false,
-              pinkReverse: false,
-              rareLeft: false,
-              rareRight: false,
+              
             });
           }
           //stop Light
           if (hexadec == '0-0-0-20') {
             this.setState({
-              leftIndi: false,
-              rightIndi: false,
               stopLig: true,
-              ignition: false,
-              newBat: false,
-              fogBlue: false,
-              pinkReverse: false,
-              rareLeft: false,
-              rareRight: false,
             });
           }
           //ignition Power
           if (hexadec == '0-0-1-0') {
             this.setState({
-              leftIndi: false,
-              rightIndi: false,
-              stopLig: false,
               ignition: true,
-              newBat: false,
-              fogBlue: false,
-              pinkReverse: false,
-              rareLeft: false,
-              rareRight: false,
             });
           }
           //battery Power
           if (hexadec == '0-0-0-80') {
             this.setState({
-              leftIndi: false,
-              rightIndi: false,
-              stopLig: false,
-              ignition: false,
               newBat: true,
-              fogBlue: false,
-              pinkReverse: false,
-              rareLeft: false,
-              rareRight: false,
             });
           }
           //Fog Light
-          if (hexadec == '0-0-0-10') {
+          if (hexadec | '0-0-0-10'  == '0-0-0-10') {
             this.setState({
-              leftIndi: false,
-              rightIndi: false,
-              stopLig: false,
-              ignition: false,
-              newBat: false,
               fogBlue: true,
-              pinkReverse: false,
-              rareLeft: false,
-              rareRight: false,
+            });
+          }else{
+            this.setState({
+              fogBlue: false,
             });
           }
           //Reverse Light
           if (hexadec == '0-0-0-40') {
             this.setState({
-              leftIndi: false,
-              rightIndi: false,
-              stopLig: false,
-              ignition: false,
-              newBat: false,
-              fogBlue: false,
               pinkReverse: true,
-              rareLeft: false,
-              rareRight: false,
             });
           }
           //Park Light (L)
           if (hexadec == '0-0-0-4') {
             this.setState({
-              leftIndi: false,
-              rightIndi: false,
-              stopLig: false,
-              ignition: false,
-              newBat: false,
-              fogBlue: false,
-              pinkReverse: false,
               rareLeft: true,
-              rareRight: false,
             });
           }
           //Park Light (R)
           if (hexadec == '0-0-0-8') {
             this.setState({
-              leftIndi: false,
-              rightIndi: false,
-              stopLig: false,
-              ignition: false,
-              newBat: false,
-              fogBlue: false,
-              pinkReverse: false,
-              rareLeft: false,
               rareRight: true,
             });
           }
@@ -237,8 +176,8 @@ export default class Splash extends Component {
           });
         })
         .then(() => {
-          console.log(this.state.deviceId);
-          BleManager.connect(this.state.deviceId)
+          console.log('4C:11:AE:D9:28:52');
+          BleManager.connect('4C:11:AE:D9:28:52')
             .then(() => {
               // Success code
               console.log('Connected');
@@ -246,7 +185,7 @@ export default class Splash extends Component {
             .then(() => {
               //read rssi
               this.timeout = setInterval(() => {
-                BleManager.readRSSI(this.state.deviceId)
+                BleManager.readRSSI('4C:11:AE:D9:28:52')
                   .then((rssi) => {
                     // Success code
                     console.log('Current RSSI: ' + rssi);
@@ -262,7 +201,7 @@ export default class Splash extends Component {
 
               //notify
               this.connectAndPrepare(
-                this.state.deviceId,
+                '4C:11:AE:D9:28:52',
                 '4fafc201-1fb5-459e-8fcc-c5c9c331914b',
                 'beb5483e-36e1-4688-b7f5-ea07361b26a8',
               );
@@ -277,7 +216,7 @@ export default class Splash extends Component {
   componentWillUnmount() {
     clearInterval(this.timeout);
     BleManager.stopNotification(
-      this.state.deviceId,
+      '4C:11:AE:D9:28:52',
       '4fafc201-1fb5-459e-8fcc-c5c9c331914b',
       'beb5483e-36e1-4688-b7f5-ea07361b26a8',
     );
