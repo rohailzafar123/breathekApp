@@ -45,7 +45,7 @@ export default class Splash extends Component {
     try {
       // Before startNotification you need to call retrieveServices
       const res = await BleManager.retrieveServices(peripheral);
-      console.log(res);
+      // console.log(res);
       // To enable BleManagerDidUpdateValueForCharacteristic listener
       await BleManager.startNotification(peripheral, service, characteristic);
       // Add event listener
@@ -54,102 +54,145 @@ export default class Splash extends Component {
         ({value, peripheral, characteristic, service}) => {
           // Convert bytes array to string
           console.log('value in decimal: ', value);
-          let hex,
-            hexadec = '';
-          for (let i = 0; i < value.length; i++) {
-            if (i !== 0) {
-              hex = value[i].toString(16);
-              hexadec += '-' + hex;
-            } else if (i === 0) {
-              hex = value[i].toString(16);
-              hexadec += hex;
-            }
-          }
-          console.log(hexadec);
-          if (hexadec == '0-0-11-ff') {
-            console.log('Random');
-          }
-          //All Icons Off
-          if (hexadec == '0-0-0-0') {
-            this.setState({
-              leftIndi: false,
-              rightIndi: false,
-              stopLig: false,
-              ignition: false,
-              newBat: false,
-              fogBlue: false,
-              pinkReverse: false,
-              rareLeft: false,
-              rareRight: false,
-            });
-          }
-          //left Turn
-          if( hexadec |  '0-0-0-1' || hexadec == '0-0-0-1' )  {
-            this.setState({
-              leftIndi: true,
-            });
-          }
-          else{
-            this.setState({
-              leftIndi: false,
-            });
-          }
-         
-          //right Turn
-          if ( hexadec | '0-0-0-2' || hexadec == '0-0-0-2') {
-            this.setState({
-              rightIndi: true,
+          // let hex,}
+          // let sum = value[3]+value[2]+value[1]+value[0];
+          
+          const hexadec = value;
+          console.log(hexadec)
+          
+          // for (let i = 0; i < value.length; i++) {
+              // console.log('sum =',hexadec)
               
-            });
-          }
-          //stop Light
-          if (hexadec == '0-0-0-20') {
-            this.setState({
-              stopLig: true,
-            });
-          }
-          //ignition Power
-          if (hexadec == '0-0-1-0') {
-            this.setState({
-              ignition: true,
-            });
-          }
-          //battery Power
-          if (hexadec == '0-0-0-80') {
-            this.setState({
-              newBat: true,
-            });
-          }
-          //Fog Light
-          if (hexadec | '0-0-0-10'  == '0-0-0-10') {
-            this.setState({
-              fogBlue: true,
-            });
-          }else{
-            this.setState({
-              fogBlue: false,
-            });
-          }
-          //Reverse Light
-          if (hexadec == '0-0-0-40') {
-            this.setState({
-              pinkReverse: true,
-            });
-          }
-          //Park Light (L)
-          if (hexadec == '0-0-0-4') {
-            this.setState({
-              rareLeft: true,
-            });
-          }
-          //Park Light (R)
-          if (hexadec == '0-0-0-8') {
-            this.setState({
-              rareRight: true,
-            });
-          }
-        },
-      );
+            // }
+            //   if (i !== 0) {
+            //     sum += value[i];
+            //     console.log('sum =',sum)
+            //     hexadec += '-' + sum;
+            //   } else if (i === 0) {
+            //     sum = value[i];
+            //     hexadec += sum;
+            //   }
+            // }
+            // console.log(hexadec);
+            if (hexadec == '0-0-11-ff') {
+              // console.log('Random');
+            }
+            //All Icons Off
+            if (hexadec == 0) {
+              this.setState({
+                leftIndi: false,
+                rightIndi: false,
+                stopLig: false,
+                ignition: false,
+                newBat: false,
+                fogBlue: false,
+                pinkReverse: false,
+                rareLeft: false,
+                rareRight: false,
+              });
+            }
+            //left Turn
+           // if (hexadec | 2 || hexadec === 1) {
+             if ((hexadec[3] & 1) == 1) {
+              this.setState({
+                leftIndi: true,
+              });
+            }
+            else{
+              this.setState({
+                leftIndi: false
+              })
+            }
+            //right Turn
+            if ((hexadec[3] & 2) == 2) {
+              this.setState({
+                rightIndi: true,
+              });
+            }
+            else{
+              this.setState({
+                rightIndi: false
+              })
+            }
+            //stop Light
+            if ((hexadec[3] & 32) == 32) {
+              this.setState({
+                stopLig: true,
+              });
+            }
+            else{
+              this.setState({
+                stopLig: false,
+              })
+            }
+            //ignition Power
+            if ((hexadec[2] & 1) == 1) {
+              this.setState({
+                ignition: true,
+              });
+            }
+            else{
+              this.setState({
+                ignition: false,
+              })  
+            }
+            //battery Power
+            if ((hexadec[3] & 128) == 128) {
+              this.setState({
+                newBat: true,
+              });
+            }
+            else{
+              this.setState({
+                newBat: false,
+              })  
+            }
+            //Fog Light
+            if ((hexadec[3] & 16) == 16) {
+              this.setState({
+                fogBlue: true,
+              });
+            }
+            else{
+              this.setState({
+                fogBlue: false,
+              })  
+            }
+            //Reverse Light
+            if ((hexadec[3] & 64) == 64) {
+              this.setState({
+                pinkReverse: true,
+              });
+            }
+            else{
+              this.setState({
+                pinkReverse: false,
+              })
+            }
+            //Park Light (L)
+            if ((hexadec[3] & 4) == 4) {
+              this.setState({
+                rareLeft: true,
+              });
+            }
+            else{
+              this.setState({
+                rareLeft: false,
+              })
+            }
+            //Park Light (R)
+            if ((hexadec[3] & 8) == 8) {
+              this.setState({
+                rareRight: true,
+              });
+            }
+            else{
+              this.setState({
+                rareRight: false,
+              })
+            }
+          },
+        );
     } catch (err) {
       Alert.alert(
         'Cannot read Characteristic. Please Go Back, Come to this screen again!',

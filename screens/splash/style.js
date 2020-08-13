@@ -1,8 +1,10 @@
-import { StyleSheet } from "react-native"
+import { StyleSheet,Dimensions } from "react-native"
 
 //Packages
 
 //Files
+const { width, height } = Dimensions.get('window');
+
 export default styles = StyleSheet.create({
 
     container: {
@@ -16,12 +18,12 @@ export default styles = StyleSheet.create({
         alignItems:'center'
     },
     logo: {
-        width:('145%'),
+        width:('15%'),
 
     },
     activityIndi:{
         position:'relative',
-        bottom:160
+        bottom:height * .0,
     },
     textHeading:{
         flexDirection:'row',

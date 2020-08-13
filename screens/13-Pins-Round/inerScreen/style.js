@@ -42,7 +42,7 @@ export default styles = StyleSheet.create({
   wifiAbsulute: {
     // marginTop: 11,
     top: height * 0.021,
-    right: width * 0.13,
+    left: width * .75,
     width: '10%',
     height: '80%',
     position: 'absolute',
