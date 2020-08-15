@@ -9,11 +9,12 @@ import {
     StatusBar,
     Image,
     TouchableOpacity,
-    addons
+    Dimensions
 } from 'react-native';
 import styles from "./style";
 import RadioButtonRN from 'radio-buttons-react-native';
 import Icon from 'react-native-vector-icons/Feather';
+const {width, height} = Dimensions.get('window');
 
 const data = [
     {
@@ -99,8 +100,8 @@ export default class home extends Component {
                         boxStyle={
                             {
                                 height:("10%"),
-                                backgroundColor:'#d6d8dd70',
-                                elevation:3,
+                                backgroundColor:'#cacaca',
+                                elevation:width * .003,
                                 width:("80%"),
                             }
                         }

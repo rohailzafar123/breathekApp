@@ -1,57 +1,60 @@
-import { StyleSheet } from "react-native"
+import { StyleSheet, Dimensions } from "react-native"
 
 //Packages
 
 //Files
+const { width, height } = Dimensions.get('window');
+
 export default styles = StyleSheet.create({
 
     container: {
-        flex:1,
-        backgroundColor:'white',
-        
+        flex: 1,
+        backgroundColor: 'white',
+
     },
     header: {
-        height:('8%'),
-        backgroundColor:'#4f87ff',
-        elevation:4,
+        height: ('8%'),
+        backgroundColor: '#4f87ff',
+        elevation: width * .01,
         // justifyContent:'center',
-        paddingLeft:20,
-        flexDirection:'row'
+        paddingLeft: 20,
+        flexDirection: 'row'
         // alignItems:'center',        
 
     },
     logo: {
-        alignSelf:'center',
-        width:('7%'),
+        alignSelf: 'center',
+        width: ('7%'),
 
     },
-    textStyle1:{
-        color:'white',
-        alignSelf:'center',
-        fontSize:20,
+    textStyle1: {
+        color: 'white',
+        alignSelf: 'center',
+        fontSize: 20,
     },
-    body:{
-        flex:7,
-        justifyContent:'center',
-        alignItems:'center',        
+    body: {
+        flex: 7,
+        justifyContent: 'center',
+        alignItems: 'center',
         // borderColor:'white'
     },
-    footer:{
-flex:1,    },
-    buttun:{
+    footer: {
+        flex: 1,
+    },
+    buttun: {
 
-        width:('100%'),
-        height:('65%'),
-        justifyContent:'center',
-        backgroundColor:'#4f87ff',
-        elevation:4,
+        width: ('100%'),
+        height: ('65%'),
+        justifyContent: 'center',
+        backgroundColor: '#4f87ff',
+        elevation: width * .002,
 
     },
-    buttnText:{
-        color:'white',
-        alignSelf:'center',
-        fontSize:15,
-        fontWeight:'bold'
+    buttnText: {
+        color: 'white',
+        alignSelf: 'center',
+        fontSize: width * .04,
+        fontWeight: 'bold'
     },
     buttonContainer: {
         flexDirection: 'row',
