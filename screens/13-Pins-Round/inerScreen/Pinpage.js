@@ -229,48 +229,45 @@ export default class Splash extends Component {
     //Scanning
     BleManager.scan(['4fafc201-1fb5-459e-8fcc-c5c9c331914b'], 5).then(() => {
       // Success code
-      BleManager.getBondedPeripherals()
-        .then((res) => {
-          console.log(res[0].id);
-          this.setState({
-            deviceId: res[0].id,
-          });
+      console.log(
+        '!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',
+      );
+      console.log(this.props.navigation.state.params);
+      this.setState({
+        deviceId: this.props.navigation.state.params.deviceId,
+      });
+      BleManager.connect(this.state.deviceId)
+        .then(() => {
+          // Success code
+          console.log('Connected');
         })
         .then(() => {
-          console.log(this.state.deviceId);
-          BleManager.connect(this.state.deviceId)
-            .then(() => {
-              // Success code
-              console.log('Connected');
-            })
-            .then(() => {
-              //read rssi
-              this.timeout = setInterval(() => {
-                BleManager.readRSSI(this.state.deviceId)
-                  .then((rssi) => {
-                    // Success code
-                    console.log('Current RSSI: ' + rssi);
-                    this.setState({
-                      rssi_strength: rssi,
-                    });
-                  })
-                  .catch((error) => {
-                    // Failure code
-                    console.log(error);
-                  });
-              }, 1000);
+          //read rssi
+          this.timeout = setInterval(() => {
+            BleManager.readRSSI(this.state.deviceId)
+              .then((rssi) => {
+                // Success code
+                console.log('Current RSSI: ' + rssi);
+                this.setState({
+                  rssi_strength: rssi,
+                });
+              })
+              .catch((error) => {
+                // Failure code
+                console.log(error);
+              });
+          }, 1000);
 
-              //notify
-              this.connectAndPrepare(
-                this.state.deviceId,
-                '4fafc201-1fb5-459e-8fcc-c5c9c331914b',
-                'beb5483e-36e1-4688-b7f5-ea07361b26a8',
-              );
-            })
-            .catch((error) => {
-              // Failure code
-              console.log('err', error);
-            });
+          //notify
+          this.connectAndPrepare(
+            this.state.deviceId,
+            '4fafc201-1fb5-459e-8fcc-c5c9c331914b',
+            'beb5483e-36e1-4688-b7f5-ea07361b26a8',
+          );
+        })
+        .catch((error) => {
+          // Failure code
+          console.log('err', error);
         });
     });
   }
@@ -321,7 +318,7 @@ export default class Splash extends Component {
       : (rareRightLight = require('../../../images/13pin/rare_r_w_0Active.png'));
 
     let image_source;
-    if (this.state.rssi_strength <= -40 && this.state.rssi_strength >= -65) {
+    if (this.state.rssi_strength <= -20 && this.state.rssi_strength >= -65) {
       image_source = require('../../../images/5pin/action_rssi1.png');
     } else if (
       this.state.rssi_strength <= -66 &&
