@@ -284,7 +284,7 @@ export default class Splash extends Component {
               />
             </View>
             <View style={styles.imageBox}>
-              <Text style={styles.imageText}>Reverse Signal</Text>
+              <Text style={styles.imageText}>Reverse Lights</Text>
               <Image
                 resizeMode="contain"
                 style={styles.image3}

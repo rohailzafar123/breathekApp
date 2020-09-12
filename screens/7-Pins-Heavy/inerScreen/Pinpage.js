@@ -294,7 +294,7 @@ export default class Splash extends Component {
               />
             </View>
             <View style={styles.imageBox}>
-              <Text style={styles.imageText}>Reverse Signal</Text>
+              <Text style={styles.imageText}>Left Tail Lights</Text>
               <Image
                 resizeMode="contain"
                 style={styles.image3}
@@ -302,7 +302,7 @@ export default class Splash extends Component {
               />
             </View>
             <View style={styles.imageBox}>
-              <Text style={styles.imageText}>Tail Lights</Text>
+              <Text style={styles.imageText}>Right Tail Lights</Text>
               <Image
                 resizeMode="contain"
                 style={styles.image3}
@@ -310,7 +310,7 @@ export default class Splash extends Component {
               />
             </View>
             <View style={styles.imageBox}>
-              <Text style={styles.imageText}>Stop Lights</Text>
+              <Text style={styles.imageText}>Reverse Lights</Text>
               <Image
                 resizeMode="contain"
                 style={styles.image3}

@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 
 import {
   AppRegistry,
@@ -11,16 +11,21 @@ import {
   StatusBar,
   Alert,
   PermissionsAndroid,
+  Dimensions
+
 } from 'react-native';
 import Back from 'react-native-vector-icons/Ionicons';
 // import BleManager from 'react-native-ble-manager';
+import { Fonts } from '../../scr/utils/fonts';
 
-import {NativeModules, NativeEventEmitter} from 'react-native';
-import {BleManager} from 'react-native-ble-plx';
+import { NativeModules, NativeEventEmitter } from 'react-native';
+import { BleManager } from 'react-native-ble-plx';
 // Packages
 
 import styles from './style';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import style from './style';
+const { width, height } = Dimensions.get('window');
 
 export default class Splash extends Component {
   constructor(props) {
@@ -32,12 +37,11 @@ export default class Splash extends Component {
       listOfDevicesNames: [],
     };
   }
-
   showLoader = () => {
-    this.setState({showLoader: true});
+    this.setState({ showLoader: true });
   };
   hideLoader = () => {
-    this.setState({showLoader: false});
+    this.setState({ showLoader: false });
     // Stop scanning as it's not necessary if you are scanning for one device.
     this.manager.stopDeviceScan();
   };
@@ -113,47 +117,53 @@ export default class Splash extends Component {
             <View style={styles.headerInner}>
               <View style={styles.goBack}>
                 <TouchableOpacity
-                  onPress={() => this.props.navigation.goBack()}>
-                  <Back name="ios-arrow-back" size={40} color="#002468" />
+                  onPress={() => this.props.navigation.goBack()}
+                >
+                  <Back name="ios-arrow-back" size={width * .09} color="#002468" />
                 </TouchableOpacity>
               </View>
               <Image
                 resizeMode="contain"
                 style={styles.logo}
-                source={require('../../images/logo2.jpg')}
+                source={require('../../images/thunderLogo.png')}
               />
               <Text style={styles.textStyle1}>
                 13-Pins Round Socket Devices
               </Text>
               <ActivityIndicator
-                style={{
-                  marginLeft: 30,
-                }}
+                style={styles.activityIndicator}
                 animating={this.state.showLoader}
-                size={25}
+                size={width * .05}
                 color="#807e7e96"
               />
               <View
-                style={{
-                  height: 25,
-                  borderWidth: 0.5,
-                  // marginLeft:35,
-                  borderColor: '#b4b4b4d0',
-                }}
+                style={styles.scanView}
               />
               {this.state.showLoader == false ? (
-                <TouchableOpacity
+                <View
                   style={styles.scanButtun}
-                  onPress={() => this.doSignup()}>
-                  <Text style={{fontWeight: 'bold'}}>Scan</Text>
-                </TouchableOpacity>
+                >
+                  <TouchableOpacity
+                    onPress={() => this.doSignup()}>
+                    <Text style={{
+                      fontSize: width * .03,
+                      fontFamily: Fonts.Montserrat,
+                    }}>Scan</Text>
+                  </TouchableOpacity>
+                </View>
               ) : (
-                <TouchableOpacity
-                  style={styles.scanButtun}
-                  onPress={() => this.hideLoader()}>
-                  <Text style={{fontWeight: 'bold'}}>Stop</Text>
-                </TouchableOpacity>
-              )}
+                  <View
+                    style={styles.scanButtun}
+                  >
+                    <TouchableOpacity
+                      onPress={() => this.hideLoader()}>
+                      <Text style={{
+                        fontSize: width * .03,
+                        fontFamily: Fonts.Montserrat,
+                      }}>Stop</Text>
+                    </TouchableOpacity>
+                  </View>
+                )}
             </View>
           </View>
         </View>
@@ -161,9 +171,19 @@ export default class Splash extends Component {
           <View>
             <TouchableOpacity
               style={styles.unknownList}
-              onPress={() => this.props.navigation.navigate('pingpage13')}>
-              <Text style={{fontSize: 20}}>Unknown Device</Text>
-              <Text style={{fontSize: 12, marginTop: 4}}>
+              onPress={() =>
+                this.props.navigation.navigate('pingpage13')}
+            >
+              <Text style={{
+                color: 'black',
+                fontSize: width * .04,
+                fontFamily: Fonts.Montserrat
+              }}>Unknown Device</Text>
+              <Text style={{
+                color: 'black',
+                fontSize: width * .025,
+                fontFamily: Fonts.Montserrat
+              }}>
                 4B:8D:D5:68:2A:4f
               </Text>
             </TouchableOpacity>
@@ -180,8 +200,16 @@ export default class Splash extends Component {
                         deviceId: item[1],
                       })
                     }>
-                    <Text style={{fontSize: 20}}>{item[0]}</Text>
-                    <Text style={{fontSize: 12, marginTop: 4}}>{item[1]}</Text>
+                    <Text style={{
+                      color: 'black',
+                      fontSize: width * .04,
+                      fontFamily: Fonts.Montserrat
+                    }}>{item[0]}</Text>
+                    <Text style={{
+                      color: 'black',
+                      fontSize: width * .025,
+                      fontFamily: Fonts.Montserrat
+                    }}>{item[1]}</Text>
                   </TouchableOpacity>
                 );
               })}
