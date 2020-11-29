@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 
 import {
   AppRegistry,
-  StyleSheet,
+  Dimensions,
   Text,
   View,
   Image,
@@ -12,9 +12,12 @@ import {
 } from 'react-native';
 import Back from 'react-native-vector-icons/Ionicons';
 //Packages
+import {Fonts} from '../../scr/utils/fonts';
 
 import styles from './style';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import {TouchableOpacity} from 'react-native-gesture-handler';
+
+const {width, height} = Dimensions.get('window');
 
 export default class Splash extends Component {
   constructor(props) {
@@ -25,10 +28,10 @@ export default class Splash extends Component {
   }
 
   showLoader = () => {
-    this.setState({ showLoader: true });
+    this.setState({showLoader: true});
   };
   hideLoader = () => {
-    this.setState({ showLoader: false });
+    this.setState({showLoader: false});
   };
 
   doSignup = () => {
@@ -37,6 +40,7 @@ export default class Splash extends Component {
 
   render() {
     return (
+      //
       <View>
         <StatusBar
           backgroundColor="black"
@@ -46,20 +50,19 @@ export default class Splash extends Component {
         />
         <View style={styles.headerContainer}>
           <View style={styles.header}>
-            <View style={styles.headerInner}>         
-             <View style={styles.goBack}>
-              <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
-                <Back name="ios-arrow-back" size={40} color="#002468" />
-              </TouchableOpacity>
-            </View>
+            <View style={styles.headerInner}>
+              <View style={styles.goBack}>
+                <TouchableOpacity
+                  onPress={() => this.props.navigation.goBack()}>
+                  <Back name="ios-arrow-back" size={40} color="#002468" />
+                </TouchableOpacity>
+              </View>
               <Image
                 resizeMode="contain"
                 style={styles.logo}
-                source={require('../../images/logo2.jpg')}
+                source={require('../../images/thunderLogo.png')}
               />
-              <Text style={styles.textStyle1}>
-                12-Pins Flat Socket Devices
-          </Text>
+              <Text style={styles.textStyle1}>12-Pins Flat Socket Devices</Text>
               <ActivityIndicator
                 style={{
                   marginLeft: 50,
@@ -80,30 +83,39 @@ export default class Splash extends Component {
                 <TouchableOpacity
                   style={styles.scanButtun}
                   onPress={() => this.doSignup()}>
-                  <Text style={{ fontWeight: 'bold' }}>Scan</Text>
+                  <Text style={{fontWeight: 'bold'}}>Scan</Text>
                 </TouchableOpacity>
               ) : (
-                  <TouchableOpacity
-                    style={styles.scanButtun}
-                    onPress={() => this.hideLoader()}>
-                    <Text style={{ fontWeight: 'bold' }}>Stop</Text>
-                  </TouchableOpacity>
-                )}
+                <TouchableOpacity
+                  style={styles.scanButtun}
+                  onPress={() => this.hideLoader()}>
+                  <Text style={{fontWeight: 'bold'}}>Stop</Text>
+                </TouchableOpacity>
+              )}
             </View>
           </View>
         </View>
         <View style={styles.body}>
           <View>
-            <TouchableOpacity style={styles.unknownList}
+            <TouchableOpacity
+              style={styles.unknownList}
               onPress={() => this.props.navigation.navigate('pingpage12')}>
-              <Text style={{ fontSize: 20 }}>Unknown Device</Text>
-              <Text style={{ fontSize: 12, marginTop: 4 }}>
+              <Text
+                style={{
+                  color: 'black',
+                  fontSize: width * 0.04,
+                  fontFamily: Fonts.Montserrat,
+                }}>
+                Unknown Device
+              </Text>
+              <Text style={{fontSize: 12, marginTop: 4}}>
                 4B:8D:D5:68:2A:4f
               </Text>
             </TouchableOpacity>
           </View>
         </View>
       </View>
+      //
     );
   }
 }

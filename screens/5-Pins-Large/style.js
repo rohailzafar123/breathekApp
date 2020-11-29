@@ -1,49 +1,75 @@
-import {StyleSheet,Dimensions} from 'react-native';
+import {StyleSheet, Dimensions} from 'react-native';
 
 //Packages
+import {Fonts} from '../../scr/utils/fonts';
 
 //Files
-const { width, height } = Dimensions.get('window');
+const {width, height} = Dimensions.get('window');
 export default styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
   },
-  headerContainer:{
+  headerContainer: {
     height: '28%',
-    backgroundColor: '#dbdbdb',
-    elevation: 11,
+    backgroundColor: 'white',
+    elevation: width * 0.003,
   },
   header: {
-    // flex:1,
-    width:'100%',
-    height:'100%',
-    // alignSelf:'center'
+    width: '100%',
+    height: '100%',
   },
-  headerInner:{
-    flex: 1, flexDirection: 'row',
+  headerInner: {
+    flex: 1,
+    flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingHorizontal: 10,
+  },
+  goBack: {
+    width: width * 0.04,
+    position: 'absolute',
+    left: width * 0.02,
   },
   logo: {
-    width: '9%',
+    width: width * 0.04,
+    position: 'absolute',
+    left: width * 0.08,
   },
   textStyle1: {
     color: 'black',
-    fontSize: width * .035,
-    fontWeight: 'bold',
+    fontSize: width * 0.04,
+    fontFamily: Fonts.Montserrat,
+    position: 'absolute',
+    left: width * 0.13,
+    // fontWeight: 'bold',
+  },
+  activityIndicator: {
+    position: 'absolute',
+    right: width * 0.15,
+  },
+  scanView: {
+    height: height * 0.05,
+    borderWidth: 0.5,
+    borderColor: '#b4b4b4d0',
+    position: 'absolute',
+    right: width * 0.12,
+  },
+  scanButtun: {
+    position: 'absolute',
+    right: width * 0.02,
   },
   body: {
     flex: 8,
   },
   unknownList: {
-    height: 50,
-    // justifyContent:'center',
-    elevation: 1,
+    height: height * 0.07,
+    width: width * 0.9,
+    alignSelf: 'center',
+    justifyContent: 'center',
+    elevation: width * 0.005,
     // borderBottomWidth:1,
-    backgroundColor: '#f3f3f396',
-    paddingLeft: 5,
-    marginTop: 3,
+    backgroundColor: 'white',
+    paddingLeft: width * 0.02,
+    marginTop: height * 0.02,
+    borderRadius: width * 0.01,
   },
 });
