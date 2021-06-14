@@ -26,13 +26,13 @@ export default styles = StyleSheet.create({
   },
   goBack: {
     width: width * 0.04,
-    position: 'absolute',
-    left: width * 0.02,
+    // position: 'absolute',
+    marginLeft: width * 0.02,
   },
   logo: {
-    width: width * 0.04,
-    position: 'absolute',
-    left: width * 0.08,
+    width: width * 0.1,
+    // position: 'absolute',
+    // left: width * 0.08,
   },
   textStyle1: {
     color: 'black',
@@ -44,7 +44,7 @@ export default styles = StyleSheet.create({
   },
   activityIndicator: {
     position: 'absolute',
-    right: width * 0.15,
+    right: width * 0.13,
   },
   scanView: {
     height: height * 0.05,

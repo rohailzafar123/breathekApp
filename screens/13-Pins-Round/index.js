@@ -17,6 +17,7 @@ import {
 import Back from 'react-native-vector-icons/Ionicons';
 // import BleManager from 'react-native-ble-manager';
 import { Fonts } from '../../scr/utils/fonts';
+import TextTicker from 'react-native-text-ticker';
 
 import { NativeModules, NativeEventEmitter } from 'react-native';
 import { BleManager } from 'react-native-ble-plx';
@@ -122,14 +123,40 @@ export default class Splash extends Component {
                   <Back name="ios-arrow-back" size={width * .09} color="#002468" />
                 </TouchableOpacity>
               </View>
-              <Image
-                resizeMode="contain"
-                style={styles.logo}
-                source={require('../../images/thunderLogo.png')}
-              />
-              <Text style={styles.textStyle1}>
-                13-Pins Round Socket Devices
-              </Text>
+              <View style={{
+                backgroundColor: "#4f87ff",
+                width: height * .06,
+                height: height * .06,
+                justifyContent: 'center',
+                alignItems: 'center',
+                borderRadius: height * .08,
+                elevation: height * .005,
+              }}>
+                <Image
+                  resizeMode="contain"
+                  style={styles.logo}
+                  source={require("../../images/LELogo.png")}
+                />
+              </View>
+              <View style={{
+                width : width * .62,
+                marginLeft:height * .005,
+              }}>
+                <TextTicker
+                  style={{
+                    fontSize: height * 0.02,
+                    fontFamily: Fonts.Montserrat,
+                    textAlign: 'center',
+                  }}
+                  duration={5000}
+                  loop
+                  scroll
+                  repeatSpacer={50}
+                  marqueeDelay={2000}
+                >
+                  13-Pin Round Socket Devices
+              </TextTicker>
+              </View>
               <ActivityIndicator
                 style={styles.activityIndicator}
                 animating={this.state.showLoader}
@@ -152,18 +179,18 @@ export default class Splash extends Component {
                   </TouchableOpacity>
                 </View>
               ) : (
-                  <View
-                    style={styles.scanButtun}
-                  >
-                    <TouchableOpacity
-                      onPress={() => this.hideLoader()}>
-                      <Text style={{
-                        fontSize: width * .03,
-                        fontFamily: Fonts.Montserrat,
-                      }}>Stop</Text>
-                    </TouchableOpacity>
-                  </View>
-                )}
+                <View
+                  style={styles.scanButtun}
+                >
+                  <TouchableOpacity
+                    onPress={() => this.hideLoader()}>
+                    <Text style={{
+                      fontSize: width * .03,
+                      fontFamily: Fonts.Montserrat,
+                    }}>Stop</Text>
+                  </TouchableOpacity>
+                </View>
+              )}
             </View>
           </View>
         </View>

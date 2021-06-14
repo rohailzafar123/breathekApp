@@ -18,28 +18,28 @@ const {width, height} = Dimensions.get('window');
 
 const data = [
     {
-        label: '5-Pins Large Round Socket',
+        label: '5-Pin Large Round Socket',
     },
     {
-        label: '6-Pins Small Round Socket',
+        label: '6-Pin Small Round Socket',
     },
     {
-        label: '7-Pins Flat Socket'
+        label: '7-Pin Flat Socket'
     },
     {
-        label: '7-Pins Small Round Socket'
+        label: '7-Pin Small Round Socket'
     },
     {
-        label: '7-Pins Large Round Socket'
+        label: '7-Pin Large Round Socket'
     },
     {
-        label: '7-Pins Heavy Duty Round Socket'
+        label: '7-Pin Heavy Duty Round Socket'
     },
     {
-        label: '12-Pins Flat Socket'
+        label: '12-Pin Flat Socket'
     },
     {
-        label: '13-Pins Round Socket'
+        label: '13-Pin Round Socket'
     }
 
 ];
@@ -57,28 +57,28 @@ export default class home extends Component {
         if(this.state.value == ''){
             alert('Select Any One')
         }
-        else if(this.state.value.label == '5-Pins Large Round Socket' ){
+        else if(this.state.value.label == '5-Pin Large Round Socket' ){
             this.props.navigation.navigate('_5PinsLarge')
         }
-        else if(this.state.value.label == '6-Pins Small Round Socket' ){
+        else if(this.state.value.label == '6-Pin Small Round Socket' ){
             this.props.navigation.navigate('_6PinsSmall')
         }
-        else if(this.state.value.label == '7-Pins Heavy Duty Round Socket' ){
+        else if(this.state.value.label == '7-Pin Heavy Duty Round Socket' ){
             this.props.navigation.navigate('_7PinsHeavy')
         }
-        else if(this.state.value.label == '7-Pins Flat Socket' ){
+        else if(this.state.value.label == '7-Pin Flat Socket' ){
             this.props.navigation.navigate('_7PinsFlat')
         }
-        else if(this.state.value.label == '7-Pins Small Round Socket' ){
+        else if(this.state.value.label == '7-Pin Small Round Socket' ){
             this.props.navigation.navigate('_7PinsSmall')
         }
-        else if(this.state.value.label == '7-Pins Large Round Socket' ){
+        else if(this.state.value.label == '7-Pin Large Round Socket' ){
             this.props.navigation.navigate('_7PinsLarge')
         }
-        else if(this.state.value.label == '12-Pins Flat Socket' ){
+        else if(this.state.value.label == '12-Pin Flat Socket' ){
             this.props.navigation.navigate('_12PinsFlat')
         }
-        else if(this.state.value.label == '13-Pins Round Socket' ){
+        else if(this.state.value.label == '13-Pin Round Socket' ){
             this.props.navigation.navigate('_13PinsRound')
         }
         else{
