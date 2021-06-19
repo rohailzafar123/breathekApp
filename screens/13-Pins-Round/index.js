@@ -25,7 +25,6 @@ import { BleManager } from 'react-native-ble-plx';
 
 import styles from './style';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import style from './style';
 const { width, height } = Dimensions.get('window');
 
 export default class Splash extends Component {

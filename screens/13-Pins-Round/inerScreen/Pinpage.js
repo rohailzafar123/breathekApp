@@ -234,19 +234,6 @@ export default class Splash extends Component {
           } else {
             this.setState({ barSignal: 0 })
           }
-          // hexadec[1] & 1 == 1 ? this.setState({barSignal: 2}) : 
-          // hexadec[1] & 1 == 1 && hexadec[2] & 16 == 16 ? this.setState({barSignal: 3}) : 
-          // hexadec[3] & 64 == 64 ? this.setState({barSignal: 4}) : 
-          // hexadec[3] & 4 == 4 ? this.setState({barSignal: 5}) : 
-          // hexadec[3] & 16 == 16 ? this.setState({barSignal: 6}) : 
-          // hexadec[3] & 128 == 128 ? this.setState({barSignal: 7}) :
-          // hexadec[2] & 1 == 1 ? this.setState({barSignal: 8}) :
-          // hexadec[3] & 8 == 8 ? this.setState({barSignal: 9}) :
-          // hexadec[3] & 8 == 8 ? this.setState({barSignal: 10}) :  
-          // hexadec[2] & 8 == 8 ? this.setState({barSignal: 11}) : 
-          // hexadec[2] & 8 == 8 ? this.setState({barSignal: 12}) :  
-          // this.setState({barSignal: 0})  
-
 
         },
       );
@@ -387,11 +374,8 @@ export default class Splash extends Component {
                           : this.state.barSignal == 11 ? bar_signal = require('../../../images//BARS/11.png')
                             : this.state.barSignal == 12 ? bar_signal = require('../../../images//BARS/12.png')
                               : bar_signal = require('../../../images//BARS/0.png')
-    console.log(this.state.barSignal)
-    // : this.state.barSignal == 8 ? bar_signal=require('../../../images//BARS/9.png') 
-    // : this.state.barSignal == 8 ? bar_signal=require('../../../images//BARS/10.png') 
-    // : this.state.barSignal == 8 ? bar_signal=require('../../../images//BARS/11.png') 
-    // : this.state.barSignal == 8 ? bar_signal=require('../../../images//BARS/12.png') 
+    // console.log(this.state.barSignal)
+    
     return (
       <View style={styles.container}>
         <View style={styles.header}>
@@ -443,7 +427,6 @@ export default class Splash extends Component {
               source={bar_signal}
             />
           </View>
-          {/* <Text style={{ fontSize: 20, color: 'white', marginLeft: width * .6, }}>N/A</Text> */}
         </View>
         <View style={styles.lowerBody}>
           <ScrollView showsVerticalScrollIndicator={false}>

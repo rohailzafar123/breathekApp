@@ -93,7 +93,7 @@ export default class home extends Component {
                 <StatusBar backgroundColor="black" barStyle="default" hidden={true} showHideTransition={'fade'}></StatusBar>
                 <View style={styles.header}>
                     <Image resizeMode="contain" style={styles.logo} source={require("../../images/ic_plug.png")}></Image>
-                    <Text style={styles.textStyle1} >Choose And Select Trailer Socket</Text>
+                    <Text style={styles.textStyle1} > Choose And Select Trailor Socket</Text>
                 </View>
                 <View style={styles.body}>
                     <RadioButtonRN
