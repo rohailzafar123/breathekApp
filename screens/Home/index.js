@@ -55,7 +55,7 @@ export default class home extends Component {
 
     _SelectedField = () => {
         if(this.state.value == ''){
-            alert('Select Any One')
+            alert('Please select to proceed')
         }
         else if(this.state.value.label == '5-Pin Large Round Socket' ){
             this.props.navigation.navigate('_5PinsLarge')
@@ -93,7 +93,7 @@ export default class home extends Component {
                 <StatusBar backgroundColor="black" barStyle="default" hidden={true} showHideTransition={'fade'}></StatusBar>
                 <View style={styles.header}>
                     <Image resizeMode="contain" style={styles.logo} source={require("../../images/ic_plug.png")}></Image>
-                    <Text style={styles.textStyle1} > Choose And Select Trailor Socket</Text>
+                    <Text style={styles.textStyle1} > Choose And Select Trailer Socket</Text>
                 </View>
                 <View style={styles.body}>
                     <RadioButtonRN

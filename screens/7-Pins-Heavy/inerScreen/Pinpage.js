@@ -423,7 +423,7 @@ export default class Splash extends Component {
                 justifyContent: 'center',
               }}>
               <View style={styles.imageBox}>
-                <Text style={styles.imageText}>7-Pins Heavy Duty</Text>
+                <Text style={styles.imageText}>7-PIN HEAVY-DUTY</Text>
                 <Image
                   resizeMode="contain"
                   style={styles.image1}
@@ -431,7 +431,7 @@ export default class Splash extends Component {
                 />
               </View>
               <View style={styles.imageBox}>
-                <Text style={styles.imageText}>Plug</Text>
+                <Text style={styles.imageText}>PLUG</Text>
                 <Image
                   resizeMode="contain"
                   style={styles.image2}
@@ -439,7 +439,7 @@ export default class Splash extends Component {
                 />
               </View>
               <View style={styles.imageBox}>
-                <Text style={styles.imageText}>Left Indicator</Text>
+                <Text style={styles.imageText}>LEFT-HAND TURN</Text>
                 <Image
                   resizeMode="contain"
                   style={styles.image3}
@@ -447,7 +447,7 @@ export default class Splash extends Component {
                 />
               </View>
               <View style={styles.imageBox}>
-                <Text style={styles.imageText}>Right Indicator</Text>
+                <Text style={styles.imageText}>RIGHT-HAND TURN</Text>
                 <Image
                   resizeMode="contain"
                   style={styles.image3}
@@ -455,7 +455,7 @@ export default class Splash extends Component {
                 />
               </View>
               <View style={styles.imageBox}>
-                <Text style={styles.imageText}>Left Tail Lights</Text>
+                <Text style={styles.imageText}>LEFT-REAR LAMP</Text>
                 <Image
                   resizeMode="contain"
                   style={styles.image3}
@@ -463,7 +463,7 @@ export default class Splash extends Component {
                 />
               </View>
               <View style={styles.imageBox}>
-                <Text style={styles.imageText}>Right Tail Lights</Text>
+                <Text style={styles.imageText}>RIGHT-REAR LAMP</Text>
                 <Image
                   resizeMode="contain"
                   style={styles.image3}
@@ -471,7 +471,7 @@ export default class Splash extends Component {
                 />
               </View>
               <View style={styles.imageBox}>
-                <Text style={styles.imageText}>Reverse Lights</Text>
+                <Text style={styles.imageText}>REVERSING SIGNAL</Text>
                 <Image
                   resizeMode="contain"
                   style={styles.image3}
@@ -479,7 +479,7 @@ export default class Splash extends Component {
                 />
               </View>
               <View style={styles.imageBox}>
-                <Text style={styles.imageText}>Stop Lights</Text>
+                <Text style={styles.imageText}>STOP LAMPS</Text>
                 <Image
                   resizeMode="contain"
                   style={styles.image3}

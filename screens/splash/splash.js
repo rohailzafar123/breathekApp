@@ -103,7 +103,7 @@ export default class Splash extends Component {
             paddingVertical:height * .1,
           }}>
 
-            <Text style={styles.textStyle1} >LOLEC ENTERPRISES</Text>
+            <Text style={styles.textStyle1} >Human Connectivity Evolved</Text>
 
             <ActivityIndicator size="large" color="white" style={styles.activityIndi} />
           </View>

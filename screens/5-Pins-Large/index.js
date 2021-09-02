@@ -140,7 +140,7 @@ export default class Splash extends Component {
                   repeatSpacer={50}
                   marqueeDelay={2000}
                 >
-                  5-Pins Large Round Socket Devices
+                  5-Pin Large Round Socket Devices
                 </TextTicker>
               </View>
               <ActivityIndicator

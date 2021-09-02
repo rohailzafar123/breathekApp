@@ -437,7 +437,7 @@ export default class Splash extends Component {
                 justifyContent: 'center',
               }}>
               <View style={styles.imageBox}>
-                <Text style={styles.imageText}>13-Pins Round</Text>
+                <Text style={styles.imageText}>13-PIN ROUND</Text>
                 <Image
                   resizeMode="contain"
                   style={styles.image1}
@@ -445,7 +445,7 @@ export default class Splash extends Component {
                 />
               </View>
               <View style={styles.imageBox}>
-                <Text style={styles.imageText}>Socket</Text>
+                <Text style={styles.imageText}>SOCKET</Text>
                 <Image
                   resizeMode="contain"
                   style={styles.image2}
@@ -453,7 +453,7 @@ export default class Splash extends Component {
                 />
               </View>
               <View style={styles.imageBox}>
-                <Text style={styles.imageText}>Left Indicator</Text>
+                <Text style={styles.imageText}>LEFT-HAND TURN</Text>
                 <Image
                   resizeMode="contain"
                   style={styles.image3}
@@ -461,7 +461,7 @@ export default class Splash extends Component {
                 />
               </View>
               <View style={styles.imageBox}>
-                <Text style={styles.imageText}>Right Indicator</Text>
+                <Text style={styles.imageText}>RIGHT-HAND TURN</Text>
                 <Image
                   resizeMode="contain"
                   style={styles.image3}
@@ -469,7 +469,7 @@ export default class Splash extends Component {
                 />
               </View>
               <View style={styles.imageBox}>
-                <Text style={styles.imageText}>Tail Lights(L)</Text>
+                <Text style={styles.imageText}>LEFT-REAR LAMP</Text>
                 <Image
                   resizeMode="contain"
                   style={styles.image3}
@@ -477,7 +477,7 @@ export default class Splash extends Component {
                 />
               </View>
               <View style={styles.imageBox}>
-                <Text style={styles.imageText}>Tail Lights(R)</Text>
+                <Text style={styles.imageText}>RIGHT-REAR LAMP</Text>
                 <Image
                   resizeMode="contain"
                   style={styles.image3}
@@ -485,7 +485,7 @@ export default class Splash extends Component {
                 />
               </View>
               <View style={styles.imageBox}>
-                <Text style={styles.imageText}>Fog Lights</Text>
+                <Text style={styles.imageText}>FOG LAMPS</Text>
                 <Image
                   resizeMode="contain"
                   style={styles.image3}
@@ -493,7 +493,7 @@ export default class Splash extends Component {
                 />
               </View>
               <View style={styles.imageBox}>
-                <Text style={styles.imageText}>Stop Lights</Text>
+                <Text style={styles.imageText}>STOP LAMPS</Text>
                 <Image
                   resizeMode="contain"
                   style={styles.image3}
@@ -501,7 +501,7 @@ export default class Splash extends Component {
                 />
               </View>
               <View style={styles.imageBox}>
-                <Text style={styles.imageText}>Reverse Lights</Text>
+                <Text style={styles.imageText}>REVERSING SIGNAL</Text>
                 <Image
                   resizeMode="contain"
                   style={styles.image3}
@@ -509,7 +509,7 @@ export default class Splash extends Component {
                 />
               </View>
               <View style={styles.imageBox}>
-                <Text style={styles.imageText}>Power Supply +</Text>
+                <Text style={styles.imageText}>POWER SUPLY +</Text>
                 <Image
                   resizeMode="contain"
                   style={styles.image3}
@@ -517,7 +517,7 @@ export default class Splash extends Component {
                 />
               </View>
               <View style={styles.imageBox}>
-                <Text style={styles.imageText}>Ignition</Text>
+                <Text style={styles.imageText}>IGNITION</Text>
                 <Image
                   resizeMode="contain"
                   style={styles.image3}

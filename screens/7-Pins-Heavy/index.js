@@ -142,7 +142,7 @@ export default class Splash extends Component {
                   repeatSpacer={50}
                   marqueeDelay={2000}
                 >
-                  7-Pins Heavy Duty Round Socket Devices
+                  7-Pin Heavy Duty Round Socket Devices
               </TextTicker>
               </View>
               <ActivityIndicator
